@@ -1,0 +1,23 @@
+package com.example.bogdan.dou.view;
+
+import android.support.v4.app.Fragment;
+
+import com.example.bogdan.dou.view.presenter.Presenter;
+
+/**
+ * @author Bogdan Kolomiets
+ * @version 1
+ * @date 28.04.2016
+ */
+public abstract class BaseFragment extends Fragment {
+
+    protected abstract Presenter getPresenter();
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (getPresenter() != null)
+            getPresenter().onStop();
+    }
+
+}
