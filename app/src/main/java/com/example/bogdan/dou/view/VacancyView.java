@@ -9,8 +9,13 @@ import java.util.List;
  * @version 1
  * @date 28.04.2016
  */
-public interface VacancyView extends View {
+public interface VacancyView {
 
     void showVacancies(List<Vacancy> vacancies);
 
+    void showError(String error);
+
+    void showLoading();
+
+    void hideLoading();
 }

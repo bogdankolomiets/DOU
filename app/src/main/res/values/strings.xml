@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">DOU</string>
-<<<<<<< HEAD
     <string name="list_font">Roboto Regular</string>
-=======
->>>>>>> origin/master
+
 </resources>

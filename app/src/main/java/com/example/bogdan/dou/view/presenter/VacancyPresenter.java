@@ -57,6 +57,6 @@ public class VacancyPresenter extends BasePresenter {
     }
 
     private boolean isVacancyListNotEmpty() {
-        return mVacancies != null && !mVacancies.isEmpty();
+        return (mVacancies != null && !mVacancies.isEmpty());
     }
 }
