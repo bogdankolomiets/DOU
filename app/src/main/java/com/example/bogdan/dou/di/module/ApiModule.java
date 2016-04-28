@@ -1,5 +1,6 @@
 package com.example.bogdan.dou.di.module;
 
+<<<<<<< HEAD
 import com.example.bogdan.dou.model.api.ApiInterface;
 
 import javax.inject.Singleton;
@@ -9,6 +10,14 @@ import dagger.Provides;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
+=======
+import com.example.bogdan.dou.di.UserScope;
+import com.example.bogdan.dou.model.api.ApiInterface;
+
+import dagger.Module;
+import dagger.Provides;
+import retrofit.Retrofit;
+>>>>>>> origin/master
 
 /**
  * @author Bogdan Kolomiets
@@ -17,6 +26,7 @@ import retrofit.RxJavaCallAdapterFactory;
  */
 @Module
 public class ApiModule {
+<<<<<<< HEAD
     String mBaseUrl;
 
     public ApiModule(String baseUrl) {
@@ -46,6 +56,10 @@ public class ApiModule {
     }
 
     @Singleton
+=======
+
+    @UserScope
+>>>>>>> origin/master
     @Provides
     ApiInterface providesApiInterface(Retrofit retrofit) {
         return retrofit.create(ApiInterface.class);
