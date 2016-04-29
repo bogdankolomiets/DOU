@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.bogdan.dou.model.data.Vacancy;
 import com.example.bogdan.dou.view.VacancyView;
+import com.example.bogdan.dou.view.View;
 import com.example.bogdan.dou.view.presenter.base.BasePresenter;
 
 import java.util.List;
@@ -28,17 +29,18 @@ public class VacancyPresenter extends BasePresenter {
     public void onVacacies() {
         String company = "epam-systems";
 
+        onLoading();
         Subscription subscription = mVacancyModel
                 .getVacancyList(company)
                 .subscribe(new Observer<List<Vacancy>>() {
                     @Override
                     public void onCompleted() {
-
+                        onStopLoading();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        System.out.println(e);
+                        onError(e);
                     }
 
                     @Override
@@ -46,6 +48,8 @@ public class VacancyPresenter extends BasePresenter {
                         if (vacancies != null && !vacancies.isEmpty()) {
                             mVacancies = vacancies;
                             mVacancyView.showVacancies(vacancies);
+                        } else {
+                            mVacancyView.showEmptyList();
                         }
                     }
                 });
@@ -59,5 +63,10 @@ public class VacancyPresenter extends BasePresenter {
 
     private boolean isVacancyListNotEmpty() {
         return (mVacancies != null && !mVacancies.isEmpty());
+    }
+
+    @Override
+    protected View getView() {
+        return mVacancyView;
     }
 }

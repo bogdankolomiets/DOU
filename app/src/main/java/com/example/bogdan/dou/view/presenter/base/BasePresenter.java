@@ -1,6 +1,7 @@
 package com.example.bogdan.dou.view.presenter.base;
 
 import com.example.bogdan.dou.model.VacancyModelImpl;
+import com.example.bogdan.dou.view.View;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -25,6 +26,19 @@ public abstract class BasePresenter implements Presenter {
         mCompositeSubscription.clear();
     }
 
+    protected abstract View getView();
+
+    protected void onError(Throwable e) {
+        getView().showError(e.getMessage());
+    }
+
+    protected void onLoading() {
+        getView().showLoading();
+    }
+
+    protected void onStopLoading() {
+        getView().hideLoading();
+    }
 
 
 

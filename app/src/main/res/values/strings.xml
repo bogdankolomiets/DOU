@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">DOU</string>
     <string name="list_font">Roboto Regular</string>
+    <string name="companies">Компании</string>
 
 </resources>

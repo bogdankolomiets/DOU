@@ -1,5 +1,6 @@
 package com.example.bogdan.dou.view;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.model.data.Vacancy;
@@ -27,6 +29,8 @@ public class VacancyFragment extends BaseFragment implements VacancyView{
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
+    private ProgressDialog mProgressDialog;
 
     VacancyPresenter mPresenter = new VacancyPresenter(this);// TODO: 28.04.2016 провайдить презентер
 
@@ -60,17 +64,27 @@ public class VacancyFragment extends BaseFragment implements VacancyView{
     }
 
     @Override
-    public void showError(String error) {
+    public void showEmptyList() {
+        Toast.makeText(getContext(), "Пока что нет вакансий для этой компании", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void showError(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showLoading() {
-
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setTitle("Загрузка");
+        mProgressDialog.setMessage("Пожалуйста ожидайте");
+        mProgressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-
+        mProgressDialog.dismiss();
     }
 }

@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.example.bogdan.dou.R;
 
@@ -19,9 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager mFragmentManager;
 
+    private Toolbar mToolbar;// TODO: 29.04.2016 provide
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         mFragmentManager = getSupportFragmentManager();
 
@@ -29,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         if (fragment == null)
             replaceFragment(new VacancyFragment(), false);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
+        return true;
     }
 
     private void replaceFragment(Fragment fragment, boolean addToBackStack) {

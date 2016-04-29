@@ -13,4 +13,6 @@ public interface VacancyView extends View {
 
     void showVacancies(List<Vacancy> vacancies);
 
+    void showEmptyList();
+
 }
