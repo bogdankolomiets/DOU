@@ -1,4 +1,4 @@
-package com.example.bogdan.dou.view.presenter;
+package com.example.bogdan.dou.view.presenter.base;
 
 /**
  * @author Bogdan Kolomiets

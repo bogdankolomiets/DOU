@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.model.data.Vacancy;
-import com.example.bogdan.dou.view.presenter.Presenter;
+import com.example.bogdan.dou.view.presenter.base.Presenter;
 import com.example.bogdan.dou.view.presenter.VacancyPresenter;
 
 import java.util.List;

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.bogdan.dou.model.data.Vacancy;
 import com.example.bogdan.dou.view.VacancyView;
+import com.example.bogdan.dou.view.presenter.base.BasePresenter;
 
 import java.util.List;
 

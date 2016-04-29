@@ -2,7 +2,7 @@ package com.example.bogdan.dou.view;
 
 import android.support.v4.app.Fragment;
 
-import com.example.bogdan.dou.view.presenter.Presenter;
+import com.example.bogdan.dou.view.presenter.base.Presenter;
 
 /**
  * @author Bogdan Kolomiets

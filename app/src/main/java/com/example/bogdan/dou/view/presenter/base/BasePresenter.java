@@ -1,4 +1,4 @@
-package com.example.bogdan.dou.view.presenter;
+package com.example.bogdan.dou.view.presenter.base;
 
 import com.example.bogdan.dou.model.VacancyModelImpl;
 
@@ -12,7 +12,7 @@ import rx.subscriptions.CompositeSubscription;
  */
 public abstract class BasePresenter implements Presenter {
 
-    VacancyModelImpl mVacancyModel = new VacancyModelImpl();// TODO: 28.04.2016 сделать провайдинг модели
+    public VacancyModelImpl mVacancyModel = new VacancyModelImpl();// TODO: 28.04.2016 сделать провайдинг модели
 
     private CompositeSubscription mCompositeSubscription = new CompositeSubscription();// TODO: 28.04.2016 provide comSub
 
