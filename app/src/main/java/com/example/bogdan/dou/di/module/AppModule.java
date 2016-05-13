@@ -31,7 +31,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    Resources provideResources() {
-        return mApplication.getResources();
+    Resources provideResources(Application application) {
+        return application.getResources();
     }
 }

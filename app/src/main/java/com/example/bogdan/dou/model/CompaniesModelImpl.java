@@ -2,6 +2,7 @@ package com.example.bogdan.dou.model;
 
 import android.content.res.Resources;
 
+import com.example.bogdan.dou.App;
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.model.data.Company;
 
@@ -21,6 +22,10 @@ public class CompaniesModelImpl implements CompaniesModel {
     Resources mResources;
 
     private List<CompaniesModel> mCompanies;
+
+    public CompaniesModelImpl() {
+        App.getAppComponent().inject(this);// TODO: 29.04.2016 fix it
+    }
 
 
     @Override

@@ -1,9 +1,9 @@
 package com.example.bogdan.dou.di.component;
 
-import android.app.Application;
-
 import com.example.bogdan.dou.di.module.ApiModule;
 import com.example.bogdan.dou.di.module.AppModule;
+import com.example.bogdan.dou.di.module.VacancyFragmentModule;
+import com.example.bogdan.dou.model.CompaniesModelImpl;
 import com.example.bogdan.dou.model.VacancyModelImpl;
 
 import javax.inject.Singleton;
@@ -18,7 +18,10 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, ApiModule.class})
 public interface AppComponent {
+    VacancyFragmentComponent plus(VacancyFragmentModule vacancyFragmentModule);
+
     void inject(VacancyModelImpl vacancyModel);
 
-    Application application();
+    void inject(CompaniesModelImpl companiesModel);
+
 }
