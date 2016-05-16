@@ -1,7 +1,8 @@
-package com.example.bogdan.dou.ui;
+package com.example.bogdan.dou.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -19,10 +20,12 @@ import java.util.List;
 public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.Holder> {
     private final LayoutInflater mLayoutInflater;
     private List<Company> mCompanies;
+    private OnVacancyClickListener mListener;
 
-    public CompanyAdapter(LayoutInflater layoutInflater) {
+    public CompanyAdapter(LayoutInflater layoutInflater, OnVacancyClickListener listener) {
         mLayoutInflater = layoutInflater;
         mCompanies = new ArrayList<>();
+        mListener = listener;
     }
 
 
@@ -47,13 +50,28 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.Holder> 
         return mCompanies.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+    public Company getSelectedCompany(int position) {
+        return mCompanies.get(position);
+    }
+
+    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mName;
 
         public Holder(android.view.View itemView) {
             super(itemView);
 
             mName = (TextView) itemView.findViewById(R.id.name);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mListener.onClick(getLayoutPosition());
         }
     }
+
+    public interface OnVacancyClickListener {
+        void onClick(int position);
+    }
+
 }

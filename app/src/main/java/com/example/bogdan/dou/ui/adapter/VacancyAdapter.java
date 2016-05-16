@@ -1,4 +1,4 @@
-package com.example.bogdan.dou.ui;
+package com.example.bogdan.dou.ui.adapter;
 
 /**
  * @author Bogdan Kolomiets

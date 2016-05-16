@@ -8,4 +8,5 @@ package com.example.bogdan.dou.ui;
 public interface ActivityCallback {
 
     void onCompaniesFragmentClick();
+
 }

@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.bogdan.dou.R;
+import com.example.bogdan.dou.ui.fragment.CompanyFragment;
+import com.example.bogdan.dou.ui.fragment.VacancyFragment;
 
 /**
  * @author Bogdan Kolomiets

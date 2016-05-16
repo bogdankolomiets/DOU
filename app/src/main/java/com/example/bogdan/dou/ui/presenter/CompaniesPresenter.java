@@ -11,6 +11,8 @@ import com.example.bogdan.dou.ui.presenter.base.BasePresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rx.Observer;
 import rx.Subscription;
 
@@ -26,6 +28,7 @@ public class CompaniesPresenter extends BasePresenter {
 
     private List<Company> mCompanies = new ArrayList<>();
 
+    @Inject
     public CompaniesPresenter(CompaniesView companiesView) {
         mCompaniesView = companiesView;
     }
@@ -59,5 +62,9 @@ public class CompaniesPresenter extends BasePresenter {
     @Override
     protected View getView() {
         return mCompaniesView;
+    }
+
+    public void onItemSelected(Company company) {
+        mCompaniesView.showVacancyFragment(company.getUrl());
     }
 }

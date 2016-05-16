@@ -29,9 +29,7 @@ public class VacancyPresenter extends BasePresenter {
         mVacancyView = vacancyView;
     }
 
-    public void onVacacies() {
-        String company = "epam-systems";
-
+    public void onVacacies(String company) {
         onLoading();
         Subscription subscription = mVacancyModel
                 .getVacancyList(company)
@@ -43,7 +41,7 @@ public class VacancyPresenter extends BasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        onError(e);
+                        onErr(e);
                     }
 
                     @Override

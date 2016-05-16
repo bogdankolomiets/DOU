@@ -1,16 +1,19 @@
-package com.example.bogdan.dou.ui;
+package com.example.bogdan.dou.ui.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.model.data.Company;
+import com.example.bogdan.dou.ui.adapter.CompanyAdapter;
 import com.example.bogdan.dou.ui.presenter.CompaniesPresenter;
 import com.example.bogdan.dou.ui.presenter.base.Presenter;
 import com.example.bogdan.dou.ui.view.CompaniesView;
@@ -25,7 +28,7 @@ import butterknife.ButterKnife;
  * @version 1
  * @date 29.04.2016
  */
-public class CompanyFragment extends BaseFragment implements CompaniesView {
+public class CompanyFragment extends BaseFragment implements CompaniesView, CompanyAdapter.OnVacancyClickListener {
     @Bind(R.id.companiesList)
     RecyclerView mRecyclerView;
 
@@ -44,12 +47,13 @@ public class CompanyFragment extends BaseFragment implements CompaniesView {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(llm);
 
-        mCompanyAdapter = new CompanyAdapter(getLayoutInflater(savedInstanceState));
+        mCompanyAdapter = new CompanyAdapter(getLayoutInflater(savedInstanceState), this);
         mRecyclerView.setAdapter(mCompanyAdapter);
 
         mCompaniesPresenter.onCreateView(savedInstanceState);
         return view;
     }
+
     @Override
     protected Presenter getPresenter() {
         return mCompaniesPresenter;
@@ -60,11 +64,14 @@ public class CompanyFragment extends BaseFragment implements CompaniesView {
         mCompanyAdapter.addCompanies(companies);
     }
 
-
-
     @Override
     public void showVacancyFragment(String company) {
-
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        VacancyFragment fragment = VacancyFragment.newInstance(company);
+        fm.beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
@@ -80,5 +87,11 @@ public class CompanyFragment extends BaseFragment implements CompaniesView {
     @Override
     public void hideLoading() {
 
+    }
+
+    @Override
+    public void onClick(int position) {
+        Company selectedCompany = mCompanyAdapter.getSelectedCompany(position);
+        mCompaniesPresenter.onItemSelected(selectedCompany);
     }
 }

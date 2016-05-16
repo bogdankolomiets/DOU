@@ -1,14 +1,16 @@
 package com.example.bogdan.dou.di.module;
 
 import com.example.bogdan.dou.di.Lifecycle;
-import com.example.bogdan.dou.ui.VacancyFragment;
+import com.example.bogdan.dou.ui.fragment.VacancyFragment;
 import com.example.bogdan.dou.ui.presenter.VacancyPresenter;
 
 import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by bogdan on 13.05.16.
+ * @author Bogdan Kolomiets
+ * @version 1
+ * @date 13.05.2016
  */
 @Module
 public class VacancyFragmentModule {

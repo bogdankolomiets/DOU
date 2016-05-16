@@ -2,6 +2,7 @@ package com.example.bogdan.dou.di.component;
 
 import com.example.bogdan.dou.di.module.ApiModule;
 import com.example.bogdan.dou.di.module.AppModule;
+import com.example.bogdan.dou.di.module.CompaniesFragmentModule;
 import com.example.bogdan.dou.di.module.VacancyFragmentModule;
 import com.example.bogdan.dou.model.CompaniesModelImpl;
 import com.example.bogdan.dou.model.VacancyModelImpl;
@@ -19,6 +20,8 @@ import dagger.Component;
 @Component(modules = {AppModule.class, ApiModule.class})
 public interface AppComponent {
     VacancyFragmentComponent plus(VacancyFragmentModule vacancyFragmentModule);
+
+    CompaniesFragmentComponent plus(CompaniesFragmentModule companiesFragmentModule);
 
     void inject(VacancyModelImpl vacancyModel);
 

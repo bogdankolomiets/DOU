@@ -2,13 +2,14 @@ package com.example.bogdan.dou.di.component;
 
 import com.example.bogdan.dou.di.Lifecycle;
 import com.example.bogdan.dou.di.module.VacancyFragmentModule;
-import com.example.bogdan.dou.ui.VacancyFragment;
+import com.example.bogdan.dou.ui.fragment.VacancyFragment;
 
-import dagger.Component;
 import dagger.Subcomponent;
 
 /**
- * Created by bogdan on 13.05.16.
+ * @author Bogdan Kolomiets
+ * @version 1
+ * @date 13.05.2016
  */
 @Lifecycle("fragment")
 @Subcomponent(modules = VacancyFragmentModule.class)

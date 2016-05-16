@@ -1,4 +1,4 @@
-package com.example.bogdan.dou.ui;
+package com.example.bogdan.dou.ui.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,6 +15,8 @@ import com.example.bogdan.dou.App;
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.di.module.VacancyFragmentModule;
 import com.example.bogdan.dou.model.data.Vacancy;
+import com.example.bogdan.dou.ui.ActivityCallback;
+import com.example.bogdan.dou.ui.adapter.VacancyAdapter;
 import com.example.bogdan.dou.ui.presenter.base.Presenter;
 import com.example.bogdan.dou.ui.presenter.VacancyPresenter;
 import com.example.bogdan.dou.ui.view.VacancyView;
@@ -33,6 +35,8 @@ import butterknife.ButterKnife;
  */
 public class VacancyFragment extends BaseFragment implements VacancyView {
 
+    private final static String BUNDLE_VACANCY_KEY = "VACANCY_KEY";
+
     @Bind(R.id.vacanciesList)
     RecyclerView mRecyclerView;
 
@@ -43,6 +47,20 @@ public class VacancyFragment extends BaseFragment implements VacancyView {
     VacancyAdapter mAdapter;// TODO: 28.04.2016 provide
 
     private ActivityCallback mActivityCallback;
+
+    public static VacancyFragment newInstance(String company) {
+        VacancyFragment fragment = new VacancyFragment();
+
+        Bundle args = new Bundle();
+        args.putString(BUNDLE_VACANCY_KEY, company);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    private String getCompany() {
+        return getArguments().getString(BUNDLE_VACANCY_KEY);
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -62,7 +80,12 @@ public class VacancyFragment extends BaseFragment implements VacancyView {
         mAdapter = new VacancyAdapter(getLayoutInflater(savedInstanceState));// TODO: 28.04.2016 исправить адаптер, и сделать базовый адаптер
         mRecyclerView.setAdapter(mAdapter);
         setupComponent();// TODO: 13.05.16 add this to base fragment or base view
-        mPresenter.onVacacies();
+        try {
+            mPresenter.onVacacies(getCompany());
+        } catch (NullPointerException e) {
+            Toast.makeText(getContext(), "Хуйня", Toast.LENGTH_LONG).show();
+            mPresenter.onVacacies("epam-systems");
+        }
         mPresenter.onCreateView(savedInstanceState);
         return view;
     }
