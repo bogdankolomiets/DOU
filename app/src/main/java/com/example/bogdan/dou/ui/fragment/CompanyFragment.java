@@ -65,7 +65,7 @@ public class CompanyFragment extends BaseFragment implements CompaniesView, Comp
     }
 
     @Override
-    public void showVacancyFragment(String company) {
+    public void showVacancies(String company) {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         VacancyFragment fragment = VacancyFragment.newInstance(company);
         fm.beginTransaction()

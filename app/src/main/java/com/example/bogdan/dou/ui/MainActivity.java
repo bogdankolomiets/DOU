@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.ui.fragment.CompanyFragment;
 import com.example.bogdan.dou.ui.fragment.VacancyFragment;
+import com.example.bogdan.dou.ui.view.ActivityCallback;
 
 /**
  * @author Bogdan Kolomiets
@@ -19,7 +20,7 @@ import com.example.bogdan.dou.ui.fragment.VacancyFragment;
  * @date 21.04.2016
  */
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
-    private static final String TAG = "TAG";
+    private static final String TAG = "CompanyFragment";
     private static final int LAYOUT = R.layout.main_layout;
 
     private FragmentManager mFragmentManager;
@@ -37,38 +38,26 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
 
         Fragment fragment = mFragmentManager.findFragmentByTag(TAG);
         if (fragment == null)
-            replaceFragment(new VacancyFragment(), false);
+            replaceFragment(new CompanyFragment());
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
-        return true;
-    }
-
-    private void replaceFragment(Fragment fragment, boolean addToBackStack) {
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.replace(R.id.container, fragment, TAG);
-
-        if (addToBackStack)
-            transaction.addToBackStack(null);
         transaction.commit();
     }
 
     @Override
-    public void onCompaniesFragmentClick() {
-        replaceFragment(new CompanyFragment(), true);
+    public void onBackPressed() {
+        if (mFragmentManager.getBackStackEntryCount() > 0)
+            popFragmentFromBackStack();
+        else
+            super.onBackPressed();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.actionCompanyShow:
-                replaceFragment(new CompanyFragment(), true);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void popFragmentFromBackStack() {
+        mFragmentManager.popBackStack();
     }
 }

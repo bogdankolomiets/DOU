@@ -1,5 +1,7 @@
 package com.example.bogdan.dou.model.data;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * @author Bogdan Kolomiets
  * @version 1
@@ -8,10 +10,12 @@ package com.example.bogdan.dou.model.data;
 public class Company {
     private String mName;
     private String mUrl;
+    private int mImageId;
 
-    public Company(String name, String url) {
+    public Company(String name, String url, int imageId) {
         mName = name;
         mUrl = url;
+        mImageId = imageId;
     }
 
     public String getName() {
@@ -20,5 +24,9 @@ public class Company {
 
     public String getUrl() {
         return mUrl;
+    }
+
+    public int getmImageId() {
+        return mImageId;
     }
 }

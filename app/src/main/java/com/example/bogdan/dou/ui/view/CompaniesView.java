@@ -13,7 +13,7 @@ public interface CompaniesView extends View {
 
     void showCompanies(List<Company> companies);
 
-    void showVacancyFragment(String company);
+    void showVacancies(String company);
 
 
 }

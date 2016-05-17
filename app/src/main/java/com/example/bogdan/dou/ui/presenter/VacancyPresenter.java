@@ -71,7 +71,4 @@ public class VacancyPresenter extends BasePresenter {
         return mVacancyView;
     }
 
-    public void onCompaniesClick() {
-        mVacancyView.showCompaniesFragment();
-    }
 }

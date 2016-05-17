@@ -46,14 +46,13 @@ public class CompaniesPresenter extends BasePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override
                     public void onNext(Company company) {
                         mCompanies.add(company);
 
-                        System.out.println("Размер " + mCompanies.size());
                     }
                 });
         addSubscription(subscription);
@@ -65,6 +64,6 @@ public class CompaniesPresenter extends BasePresenter {
     }
 
     public void onItemSelected(Company company) {
-        mCompaniesView.showVacancyFragment(company.getUrl());
+        mCompaniesView.showVacancies(company.getUrl());
     }
 }

@@ -1,6 +1,10 @@
 package com.example.bogdan.dou.model;
 
+import android.graphics.drawable.Drawable;
+
 import com.example.bogdan.dou.model.data.Company;
+
+import java.util.List;
 
 import rx.Observable;
 

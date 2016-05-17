@@ -15,7 +15,6 @@ import com.example.bogdan.dou.App;
 import com.example.bogdan.dou.R;
 import com.example.bogdan.dou.di.module.VacancyFragmentModule;
 import com.example.bogdan.dou.model.data.Vacancy;
-import com.example.bogdan.dou.ui.ActivityCallback;
 import com.example.bogdan.dou.ui.adapter.VacancyAdapter;
 import com.example.bogdan.dou.ui.presenter.base.Presenter;
 import com.example.bogdan.dou.ui.presenter.VacancyPresenter;
@@ -46,8 +45,6 @@ public class VacancyFragment extends BaseFragment implements VacancyView {
 
     VacancyAdapter mAdapter;// TODO: 28.04.2016 provide
 
-    private ActivityCallback mActivityCallback;
-
     public static VacancyFragment newInstance(String company) {
         VacancyFragment fragment = new VacancyFragment();
 
@@ -65,7 +62,7 @@ public class VacancyFragment extends BaseFragment implements VacancyView {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivityCallback = (ActivityCallback) context;
+
     }
 
     @Nullable
@@ -80,12 +77,7 @@ public class VacancyFragment extends BaseFragment implements VacancyView {
         mAdapter = new VacancyAdapter(getLayoutInflater(savedInstanceState));// TODO: 28.04.2016 исправить адаптер, и сделать базовый адаптер
         mRecyclerView.setAdapter(mAdapter);
         setupComponent();// TODO: 13.05.16 add this to base fragment or base view
-        try {
-            mPresenter.onVacacies(getCompany());
-        } catch (NullPointerException e) {
-            Toast.makeText(getContext(), "Хуйня", Toast.LENGTH_LONG).show();
-            mPresenter.onVacacies("epam-systems");
-        }
+        mPresenter.onVacacies(getCompany());
         mPresenter.onCreateView(savedInstanceState);
         return view;
     }
@@ -103,11 +95,6 @@ public class VacancyFragment extends BaseFragment implements VacancyView {
     @Override
     public void showEmptyList() {
         Toast.makeText(getContext(), "Пока что нет вакансий для этой компании", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showCompaniesFragment() {
-        mActivityCallback.onCompaniesFragmentClick();
     }
 
     @Override
